@@ -26,9 +26,3 @@ variable "instance_name" {
   type        = string
   default     = "terraform-instance"
 }
-
-variable "google_credentials" {
-  description = "The service account key JSON"
-  type        = string
-  sensitive   = true
-}
