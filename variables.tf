@@ -32,4 +32,4 @@ variable "service_account_key_path" {
   type        = string
 }
 
-variable "project_id {}
+variable "project_id" {}
