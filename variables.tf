@@ -31,3 +31,5 @@ variable "service_account_key_path" {
   description = "The path to the service account key file"
   type        = string
 }
+
+variable "project_id {}
