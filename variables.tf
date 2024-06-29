@@ -28,6 +28,7 @@ variable "instance_name" {
 }
 
 variable "google_credentials" {
-  description = "Base64 encoded service account key JSON"
+  description = "The service account key JSON"
   type        = string
+  sensitive   = true
 }
