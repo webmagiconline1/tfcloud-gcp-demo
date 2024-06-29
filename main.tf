@@ -1,27 +1,25 @@
-terraform {
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = ">= 3.5.0"
-    }
-    random = {
-      source  = "hashicorp/random"
-      version = ">= 2.1.0"
+provider "google" {
+  credentials = base64decode(var.google_credentials)
+  project     = var.project_id
+  region      = var.region
+}
+
+resource "google_compute_instance" "default" {
+  name         = var.instance_name
+  machine_type = var.machine_type
+  zone         = var.zone
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-9"
     }
   }
-}
 
-provider "google" {
-  project = var.project_id
-  region  = var.region
-}
+  network_interface {
+    network = "default"
 
-resource "google_storage_bucket" "bucket" {
-  name     = var.bucket_name
-  location = var.region
-}
-
-resource "random_pet" "project_id" {
-  length    = 3
-  separator = "-"
+    access_config {
+      // Ephemeral IP
+    }
+  }
 }
